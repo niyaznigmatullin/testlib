@@ -52,4 +52,9 @@ TEST(instream) {
         ensure(s.readWord() == "content");
         ensure(s.eof());
     }
+    {
+        InStream s(inf, "    token");
+        s.maxBlankCount = 3;
+        ensure_exit(3, [&](){ s.readWord(); });
+    }
 }
